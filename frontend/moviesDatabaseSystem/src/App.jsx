@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MovieList from './components/MovieList';
 import CreateMovie from './components/CreateMovies';
+import UpdateMovie from './components/UpdateMovie';
 function App() {
 
   const  appRouter = createBrowserRouter([
@@ -11,7 +12,11 @@ function App() {
     {
       path:"/create",
       element: <CreateMovie/>
-    }
+    },
+    {
+      path:"/update",
+      element: <UpdateMovie/>
+    },
 ])
 
   return (
