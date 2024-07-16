@@ -25,23 +25,23 @@ const UpdateMovie = () => {
   }, [id]);
 
   const fetchMovie = async () => {
-    const response = await axios.get(`/api/updatemovie/${id}`);
+    const response = await axios.get(`http://localhost:5000/api/movies/getmovie/${id}`);
     const movie = response.data;
     setTitle(movie.title);
     setYear(movie.year);
-    setCategories(movie.categories.map(c => ({ value: c, label: c })));
+    setCategories(movie?.categories?.map(c => ({ value: c, label: c })));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     saveToUndoStack();
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('year', year);
-    formData.append('categories', categories.map(c => c.value));
-    if (poster) formData.append('poster', poster);
-
-    await axios.put(`/api/updatemovie/${id}`, formData);
+    let context = {
+      'title': title,
+      'year': year,
+      'categories': categories.map(c => c.value)
+    }
+    if (poster) context = [...context,'poster', poster];
+    await axios.put(`http://localhost:5000/api/movies/updatemovie/${id}`, context);
     navigate('/');
   };
 

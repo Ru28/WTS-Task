@@ -17,6 +17,17 @@ const getMovies = async (req, res, next) => {
   }
 };
 
+const getMoviesById = async(req, res, next)=>{
+  try{
+    const {id} = req.query;
+    const movie = await Movie.find(id);
+    res.json(movie);
+  }
+  catch(error){
+    next(error);
+  }
+};
+
 const createMovie = async (req, res, next) => {
   try {
     const { title, year, categories } = req.body;
@@ -35,6 +46,15 @@ const updateMovie = async (req, res, next) => {
     const { title, year, categories } = req.body;
     const movie = await Movie.findByIdAndUpdate(id, { title, year, categories }, { new: true });
     res.json(movie);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getAllDeletedMovies = async (req, res, next) => {
+  try {
+    const movies = await Movie.find({ deleted: true });
+    res.json(movies);
   } catch (error) {
     next(error);
   }
@@ -60,4 +80,19 @@ const restoreMovie = async (req, res, next) => {
   }
 };
 
-module.exports = { getMovies, createMovie, updateMovie, deleteMovie, restoreMovie };
+const permanentDeleteMovie = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const movie = await Movie.findByIdAndDelete(id);
+
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+
+    res.json({ message: 'Movie deleted permanently', movie });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getMovies, getMoviesById, createMovie, updateMovie, getAllDeletedMovies, deleteMovie, permanentDeleteMovie, restoreMovie };

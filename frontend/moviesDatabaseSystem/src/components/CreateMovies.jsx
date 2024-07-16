@@ -25,38 +25,40 @@ const CreateMovie = () => {
     formData.append('categories', categories.map(c => c.value));
     formData.append('poster', poster);
 
-    await axios.post('http://localhost:5000/api/createmovie', formData);
+    await axios.post('http://localhost:5000/api/movies/createmovie', formData);
     navigate('/');
   };
 
   return (
+    <div className='flex justify-center'>
     <div>
-      <h1>Create Movie</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      <h1 className='flex justify-center text-3xl font-bold p-6 m-6'>Create Movie</h1>
+      <form className='my-4' onSubmit={handleSubmit}>
+        <input className='m-4 p-4 border border-black'
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
           required
         />
-        <input
+        <input className='my-4 p-4 border border-black'
           type="number"
           value={year}
           onChange={(e) => setYear(e.target.value)}
           placeholder="Year"
           required
         />
-        <Select
+        <Select className='m-4 p-2 border border-blue-500'
           isMulti
           options={categoryOptions}
           value={categories}
           onChange={setCategories}
           placeholder="Categories"
         />
-        <input type="file" onChange={(e) => setPoster(e.target.files[0])} required />
-        <button type="submit">Create</button>
+        <input className='m-2 p-2' type="file" onChange={(e) => setPoster(e.target.files[0])} required />
+        <button className='px-4 py-2 border border-black bg-gray-400' type="submit">Create</button>
       </form>
+    </div>
     </div>
   );
 };

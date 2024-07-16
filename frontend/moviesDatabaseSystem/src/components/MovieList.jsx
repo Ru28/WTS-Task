@@ -5,17 +5,18 @@ import Select from 'react-select';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [deletedMovies,setDeletedMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState('');
-  const [filter, setFilter] = useState({ startYear: '', endYear: '' });
+  const [sort, setSort] = useState(null);
+  const [filter, setFilter] = useState({ startYear: null, endYear: null });
 
   useEffect(() => {
     fetchMovies();
-  }, [page, sort, filter]);
+  }, [page, sort, filter,deletedMovies]);
 
   const fetchMovies = async () => {
-    const response = await axios.get('http://localhost:5000/api/getmovie', {
-      params: { page, sort, filter },
+    const response = await axios.get('http://localhost:5000/api/movies/getmovies', {
+      params: { page, sort, filter},
     });
     setMovies(response.data);
   };
@@ -27,13 +28,26 @@ const MovieList = () => {
   const handleFilterChange = (e) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
   };
+  
+  const handleDeleteMovie = async (movieId)=>{
+    const response = await axios.delete(`http://localhost:5000/api/movies/delete/${movieId}`);
+    setDeletedMovies(response.data);
+  }
 
   return (
-    <div>
-      <h1>Movie List</h1>
-      <Link to="/create">Add Movie</Link>
-      <div>
-        <Select
+    <div className='flex justify-center'>
+      <div className='my-5 w-3/4'>
+      <h1 className='p-4 m-4 text-4xl font-bold flex justify-center'>Movie List</h1>
+      <div className='my-5 flex justify-between'>
+        <div className='text-lg border border-black py-2 px-4 rounded-lg'>
+          <Link to="/create">Add Movie</Link>
+        </div>
+        <div className='text-lg border border-black py-2 px-4 rounded-lg'>
+          <Link to="/delete">Deleted Movie</Link>
+        </div>
+      </div>
+      <div className='my-4'>
+        <Select className='border border-blue-500 my-4'
           options={[
             { value: 'title', label: 'Title' },
             { value: 'year', label: 'Release Year' },
@@ -41,14 +55,14 @@ const MovieList = () => {
           ]}
           onChange={handleSortChange}
         />
-        <input
+        <input className='border border-black rounded-lg p-2 mr-2 my-2'
           type="number"
           name="startYear"
           value={filter.startYear}
           onChange={handleFilterChange}
           placeholder="Start Year"
         />
-        <input
+        <input className='border border-black rounded-lg p-2 ml-2 my-2'
           type="number"
           name="endYear"
           value={filter.endYear}
@@ -56,19 +70,28 @@ const MovieList = () => {
           placeholder="End Year"
         />
       </div>
-      <ul>
+      <ul className='flex flex-wrap'>
         {movies?.map((movie) => (
-          <li key={movie._id}>
-            <h2>{movie.title}</h2>
-            <p>{movie.year}</p>
-            <Link to={`/update/${movie._id}`}>Edit</Link>
+          <li className='border border-black w-1/4 rounded-lg' key={movie._id}>
+            <h2 className='flex justify-center text-2xl font-bold m-2 p-2'>Title: {movie.title}</h2>
+            <p className='flex justify-center text-lg m-2 p-2'>Release Year: {movie.year}</p>
+            <p className='flex justify-center text-lg m-2 p-2'>Category: {movie.categories}</p>
+            <div className='flex justify-between'>
+              <div className='p-2 m-2 border border-blue-500 rounded-lg'><Link to={`/update/${movie._id}`}>Edit</Link></div>
+              <button className='p-2 m-2 border border-blue-500 rounded-lg' onClick={()=>handleDeleteMovie(movie._id)}>delete</button>
+            </div>
           </li>
         ))}
       </ul>
-      <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-        Previous
-      </button>
-      <button onClick={() => setPage(page + 1)}>Next</button>
+        <div className='m-10 flex justify-between'>
+            <button className='text-lg py-2 px-4 border border-black rounded-lg' disabled={page === 1} onClick={() => setPage(page - 1)}>
+              Previous
+            </button>
+            <button className='text-lg py-2 px-8 border border-black rounded-lg' onClick={() => setPage(page + 1)}>
+              Next
+            </button>
+        </div>
+      </div>
     </div>
   );
 };
