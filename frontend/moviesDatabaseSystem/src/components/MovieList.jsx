@@ -72,10 +72,10 @@ const MovieList = () => {
       </div>
       <ul className='flex flex-wrap'>
         {movies?.map((movie) => (
-          <li className='border border-black w-1/4 rounded-lg' key={movie._id}>
-            <h2 className='flex justify-center text-2xl font-bold m-2 p-2'>Title: {movie.title}</h2>
-            <p className='flex justify-center text-lg m-2 p-2'>Release Year: {movie.year}</p>
-            <p className='flex justify-center text-lg m-2 p-2'>Category: {movie.categories}</p>
+          <li className='flex justify-around border border-black w-full rounded-lg' key={movie._id}>
+            <h2 className='text-xl font-bold m-2 p-2'>Title: {movie.title}</h2>
+            <p className='text-lg m-2 p-2'>Release Year: {movie.year}</p>
+            <p className='text-lg m-2 p-2'>Category: {movie.categories}</p>
             <div className='flex justify-between'>
               <div className='p-2 m-2 border border-blue-500 rounded-lg'><Link to={`/update/${movie._id}`}>Edit</Link></div>
               <button className='p-2 m-2 border border-blue-500 rounded-lg' onClick={()=>handleDeleteMovie(movie._id)}>delete</button>
