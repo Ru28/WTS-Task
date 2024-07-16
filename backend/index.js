@@ -5,7 +5,7 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/moviesdb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/moviesdb');
 
 app.use(express.json());
 app.use('/api/movies', movieRoutes);
