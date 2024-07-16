@@ -5,8 +5,8 @@ const router = express.Router();
 
 const upload = multer({ dest: 'uploads/' });
 
-router.get('/', getMovies);
-router.post('/', upload.single('poster'), createMovie);
+router.get('/api/getmovie', getMovies);
+router.post('/api/createmovie', upload.single('poster'), createMovie);
 router.put('/:id', updateMovie);
 router.delete('/:id', deleteMovie);
 router.post('/restore/:id', restoreMovie);

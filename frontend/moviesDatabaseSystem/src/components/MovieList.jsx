@@ -14,7 +14,7 @@ const MovieList = () => {
   }, [page, sort, filter]);
 
   const fetchMovies = async () => {
-    const response = await axios.get('http://localhost:5000/', {
+    const response = await axios.get('http://localhost:5000/api/getmovie', {
       params: { page, sort, filter },
     });
     setMovies(response.data);
