@@ -8,6 +8,24 @@ const categoryOptions = [
   { value: 'Action', label: 'Action' },
   { value: 'Comedy', label: 'Comedy' },
   { value: 'Drama', label: 'Drama' },
+  { value: 'Science Fiction', label: 'Science Fiction' },
+  { value: 'Fantasy', label: 'Fantasy' },
+  { value: 'Horror', label: 'Horror' },
+  { value: 'Romance', label: 'Romance' },
+  { value: 'Thriller', label: 'Thriller' },
+  { value: 'Mystery', label: 'Mystery' },
+  { value: 'Animation', label: 'Animation' },
+  { value: 'Documentary', label: 'Documentary' },
+  { value: 'Musical', label: 'Musical' },
+  { value: 'Biography', label: 'Biography' },
+  { value: 'Adventure', label: 'Adventure' },
+  { value: 'Crime', label: 'Crime' },
+  { value: 'Western', label: 'Western' },
+  { value: 'Family', label: 'Family' },
+  { value: 'War', label: 'War' },
+  { value: 'Historical', label: 'Historical' },
+  { value: 'Sports', label: 'Sports' },
+  { value: 'Fantasy-Adventure', label: 'Fantasy-Adventure' }
 ];
 
 const CreateMovie = () => {

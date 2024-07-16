@@ -72,7 +72,7 @@ const MovieList = () => {
       </div>
       <ul className='flex flex-wrap'>
         {movies?.map((movie) => (
-          <li className='flex justify-around border border-black w-full rounded-lg' key={movie._id}>
+          <li className='flex justify-around border border-black w-full rounded-lg my-2' key={movie._id}>
             <h2 className='text-xl font-bold m-2 p-2'>Title: {movie.title}</h2>
             <p className='text-lg m-2 p-2'>Release Year: {movie.year}</p>
             <p className='text-lg m-2 p-2'>Category: {movie.categories}</p>
