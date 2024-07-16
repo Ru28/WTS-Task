@@ -1,1 +1,10 @@
 WTS Movie DataBase System Task
+![Screenshot (72)](https://github.com/user-attachments/assets/621dde35-2163-4ebc-b8ea-3521e5e07b83)
+![Screenshot (73)](https://github.com/user-attachments/assets/2ba97a0e-f8cb-4143-8831-a2436346696a)
+![Screenshot (74)](https://github.com/user-attachments/assets/704d2735-ff11-4cd4-8b16-7717a68de170)
+![Screenshot (68)](https://github.com/user-attachments/assets/2d75ebe3-ca0c-4b1f-aec1-cec17cbb094a)
+![Screenshot (71)](https://github.com/user-attachments/assets/f0a2dc52-48a3-47c8-af4a-0062e362e6cc)
+![Screenshot (69)](https://github.com/user-attachments/assets/e07480db-c012-445f-baf8-c482599e2909)
+![Screenshot (70)](https://github.com/user-attachments/assets/d60a9728-6465-430b-9238-abe8386b3185)
+![Screenshot (75)](https://github.com/user-attachments/assets/0a8bbfa6-a36b-468d-b772-f721ca6c2b33)
+![Screenshot (76)](https://github.com/user-attachments/assets/60ef25ab-c1c6-4340-9a35-6ec442775e62)
